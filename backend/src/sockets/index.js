@@ -6,6 +6,7 @@ import { Driver } from '../models/Driver.js';
 import { Incident } from '../models/Incident.js';
 import { Zone } from '../models/Zone.js';
 import { createIncident } from '../controllers/incidents.controller.js';
+import { metrics } from '../monitor/metrics.js';
 
 const TICK_MS = 2000;
 
@@ -80,10 +81,12 @@ export const initSockets = (server) => {
 
   live.on('connection', (socket) => {
     logger.info({ id: socket.id }, 'Socket connected to /live');
+    metrics.socketsConnected += 1;
     const driverId = socket.handshake.auth?.driverId;
 
     socket.on('disconnect', () => {
       logger.info({ id: socket.id }, 'Socket disconnected from /live');
+      metrics.socketsConnected = Math.max(0, metrics.socketsConnected - 1);
     });
 
     socket.on('driver:location', async (payload) => {

@@ -11,7 +11,12 @@ const initialState = {
   logs: [],
 };
 
-const addLog = (logs, entry) => [{ id: Date.now(), message: entry, timestamp: new Date().toISOString() }, ...logs];
+const generateUniqueId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+
+const addLog = (logs, entry) => [
+  { id: generateUniqueId(), message: entry, timestamp: new Date().toISOString() },
+  ...logs,
+];
 
 export const useLiveStore = create((set, get) => ({
   ...initialState,

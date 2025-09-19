@@ -2,9 +2,18 @@ import { io } from 'socket.io-client';
 
 let socket;
 
+const resolveSocketURL = () => {
+  const envUrl = import.meta.env.VITE_SOCKET_URL;
+  if (envUrl && envUrl.trim().length > 0) return envUrl;
+  if (typeof window !== 'undefined') {
+    return `${window.location.protocol}//${window.location.hostname}:8080`;
+  }
+  return 'http://localhost:8080';
+};
+
 export const connectLiveSocket = ({ onConnect, onDisconnect, onDrivers, onIncidents, onZones }) => {
   if (!socket) {
-    socket = io(`${import.meta.env.VITE_SOCKET_URL}/live`, {
+    socket = io(`${resolveSocketURL()}/live`, {
       withCredentials: true,
       autoConnect: false,
       reconnection: true,

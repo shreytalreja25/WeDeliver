@@ -11,6 +11,7 @@ const initialState = {
   logs: [],
 };
 
+
 const generateUniqueId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 
 const addLog = (logs, entry) => [

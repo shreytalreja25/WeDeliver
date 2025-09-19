@@ -14,6 +14,7 @@ const resolveSocketURL = () => {
 export const connectLiveSocket = ({ onConnect, onDisconnect, onDrivers, onIncidents, onZones }) => {
   if (!socket) {
     socket = io(`${resolveSocketURL()}/live`, {
+
       withCredentials: true,
       autoConnect: false,
       reconnection: true,

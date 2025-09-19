@@ -8,7 +8,10 @@ import { corsMiddleware } from './config/cors.js';
 import { env } from './config/env.js';
 import { logger } from './config/logger.js';
 import { connectDB } from './db/connect.js';
+<<<<<<< ours
 import { metricsMiddleware } from './monitor/metrics.js';
+=======
+>>>>>>> theirs
 import authRoutes from './routes/auth.routes.js';
 import deliveriesRoutes from './routes/deliveries.routes.js';
 import driversRoutes from './routes/drivers.routes.js';
@@ -27,7 +30,10 @@ export const createApp = async () => {
   app.use(corsMiddleware);
   app.use(express.json());
   app.use(cookieParser());
+<<<<<<< ours
   app.use(metricsMiddleware);
+=======
+>>>>>>> theirs
   app.use(
     rateLimit({
       windowMs: 15 * 60 * 1000,

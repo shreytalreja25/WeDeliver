@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const resolveBaseURL = () => {
   const envUrl = import.meta.env.VITE_API_BASE_URL;
   if (envUrl && envUrl.trim().length > 0) return envUrl;
@@ -13,7 +14,6 @@ const resolveBaseURL = () => {
 
 const api = axios.create({
   baseURL: resolveBaseURL(),
-  withCredentials: true,
 });
 
 export const setAuthInterceptor = (onError) => {

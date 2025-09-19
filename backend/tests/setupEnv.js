@@ -1,0 +1,9 @@
+process.env.NODE_ENV = 'test';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'testsecret123';
+process.env.JWT_EXPIRES_IN = '7d';
+process.env.CORS_ALLOWLIST = 'http://localhost:5173';
+process.env.MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/deliwer';
+process.env.ADMIN_EMAIL = 'seed-admin@example.com';
+process.env.ADMIN_PASSWORD = 'SeedPassword1';
+process.env.SEED_MODE = 'demo';
+process.env.COOKIE_SECURE = 'false';
